@@ -5,6 +5,136 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Roseta - Restaurants Halavi & Bassari à Paris</title>
     <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Styles spécifiques à la page d'accueil */
+        .hero-home {
+            height: 100vh;
+            background: linear-gradient(135deg, #E6B9B8 0%, #5F8D8B 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-home::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('images/interrieur.jpg');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.3;
+            z-index: 1;
+        }
+
+        .hero-home-content {
+            position: relative;
+            z-index: 2;
+            color: white;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+
+        .hero-home-content h1 {
+            font-size: clamp(3rem, 8vw, 6rem);
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+        }
+
+        .hero-home-content p {
+            font-size: clamp(1.2rem, 3vw, 2rem);
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+        }
+
+        .restaurants-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 5rem auto;
+            padding: 0 20px;
+        }
+
+        .restaurant-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .restaurant-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+        }
+
+        .restaurant-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 2rem;
+        }
+
+        .card-content h3 {
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+
+        .card-content p {
+            text-align: left;
+            margin-bottom: 1.5rem;
+            color: #666;
+        }
+
+        .features-section {
+            background: #f8f8f8;
+            padding: 5rem 0;
+            margin: 5rem 0;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .feature {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--secondary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .restaurants-grid {
+                grid-template-columns: 1fr;
+                margin: 3rem auto;
+            }
+        }
+    </style>
 </head>
 <body>
 
@@ -48,53 +178,134 @@
 </header>
 
 <main>
-    <section class="fullscreen-video-block">
-        <video playsinline autoplay muted loop poster="images/poster-roseta-9.jpg" class="fullscreen-bg-video">
-            <source src="video/video.mov" type="video/mp4">
-        </video>
-        <div class="content-overlay">
-            <h1>Roseta 9ème</h1>
-            <p>Restaurant Halavi</p>
-            <a href="roseta-9.html" class="button">Découvrir</a>
+    <section class="hero-home">
+        <div class="hero-home-content">
+            <h1>Roseta</h1>
+            <p>L'authenticité italienne au cœur de Paris</p>
+            <p style="font-size: 1rem; opacity: 0.9;">Cuisine Halavi & Bassari - Trois adresses d'exception</p>
         </div>
     </section>
 
-    <section class="fullscreen-video-block">
-        <video playsinline autoplay muted loop poster="images/poster-roseta-17.jpg" class="fullscreen-bg-video">
-            <source src="videos/video-roseta-17.mp4" type="video/mp4">
-        </video>
-        <div class="content-overlay">
-            <h1>Roseta 17ème</h1>
-            <p>Restaurant Halavi</p>
-            <a href="roseta-17.html" class="button">Découvrir</a>
+    <section class="features-section">
+        <div class="features-grid">
+            <div class="feature">
+                <div class="feature-icon">🍕</div>
+                <h3>Cuisine Authentique</h3>
+                <p>Des recettes traditionnelles italiennes respectant les certifications Halavi et Bassari</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🌿</div>
+                <h3>Ingrédients Frais</h3>
+                <p>Produits sélectionnés avec soin, importés directement d'Italie</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">👨‍🍳</div>
+                <h3>Savoir-Faire</h3>
+                <p>Une équipe passionnée perpétuant les traditions culinaires italiennes</p>
+            </div>
         </div>
     </section>
 
-    <section class="fullscreen-video-block">
-        <video playsinline autoplay muted loop poster="images/poster-roseta-2.jpg" class="fullscreen-bg-video">
-            <source src="videos/video-roseta-2.mp4" type="video/mp4">
-        </video>
-        <div class="content-overlay">
-            <h1>Roseta 2ème</h1>
-            <p>Restaurant Bassari</p>
-            <a href="roseta-2.html" class="button">Découvrir</a>
-        </div>
+    <section class="restaurants-grid">
+        <article class="restaurant-card">
+            <img src="images/interrieur.jpg" alt="Roseta 9ème" />
+            <div class="card-content">
+                <h3>Roseta 9ème</h3>
+                <p><strong>Restaurant Halavi</strong></p>
+                <p>Notre première adresse dans le 9ème arrondissement. Découvrez notre menu complet de spécialités italiennes Halavi dans un cadre chaleureux et moderne.</p>
+                <p><strong>📍</strong> 3 Rue Geoffroy-Marie, 75009 Paris</p>
+                <a href="roseta-9.html" class="button">Découvrir le menu</a>
+            </div>
+        </article>
+
+        <article class="restaurant-card">
+            <img src="images/interrieur.jpg" alt="Roseta 17ème" />
+            <div class="card-content">
+                <h3>Roseta 17ème</h3>
+                <p><strong>Restaurant Halavi</strong></p>
+                <p>Notre seconde adresse Halavi, située dans le 17ème arrondissement. Même excellence, même passion pour la cuisine italienne authentique.</p>
+                <p><strong>📍</strong> [Adresse à définir]</p>
+                <a href="roseta-17.html" class="button">Bientôt disponible</a>
+            </div>
+        </article>
+
+        <article class="restaurant-card">
+            <img src="images/interrieur.jpg" alt="Roseta 2ème" />
+            <div class="card-content">
+                <h3>Roseta 2ème</h3>
+                <p><strong>Restaurant Bassari</strong></p>
+                <p>Notre adresse Bassari dans le 2ème arrondissement, offrant une expérience culinaire unique avec des spécialités adaptées.</p>
+                <p><strong>📍</strong> [Adresse à définir]</p>
+                <a href="roseta-2.html" class="button">Bientôt disponible</a>
+            </div>
+        </article>
     </section>
 </main>
 
 <footer>
-    <div class="footer-content">
-        <a href="index.html" class="logo-footer">
-            <img src="images/logo.jpg" alt="Logo Roseta">
-        </a>
-        <p class="footer-tagline">Cuisine Italienne d'Exception, Halavi & Bassari à Paris.</p>
-        <div class="footer-socials">
-            <a href="https://instagram.com/roseta" target="_blank">Instagram</a>
-            <a href="https://facebook.com/roseta" target="_blank">Facebook</a>
+    <div class="footer-grid">
+        <div class="footer-col">
+            <img src="images/logo.jpg" alt="Logo Roseta" class="logo-footer">
+            <p>Cuisine Italienne d'Exception, Halavi & Bassari à Paris.</p>
         </div>
-        <p class="footer-copyright">© 2025 Restaurant Roseta. Tous droits réservés.</p>
+        <div class="footer-col">
+            <h4>Nos Restaurants</h4>
+            <ul>
+                <li><a href="roseta-9.html">Roseta 9ème (Halavi)</a></li>
+                <li><a href="roseta-17.html">Roseta 17ème (Halavi)</a></li>
+                <li><a href="roseta-2.html">Roseta 2ème (Bassari)</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Liens Utiles</h4>
+            <ul>
+                <li><a href="histoire.html">Notre Histoire</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Suivez-nous</h4>
+            <p><a href="#" target="_blank">Instagram</a></p>
+            <p><a href="#" target="_blank">Facebook</a></p>
+        </div>
+    </div>
+    <div class="footer-copyright">
+        <p>© 2025 Restaurant Roseta. Tous droits réservés.</p>
     </div>
 </footer>
 
+<script>
+    // Effet de parallax léger sur le hero
+    window.addEventListener('scroll', () => {
+        const scrolled = window.pageYOffset;
+        const hero = document.querySelector('.hero-home::before');
+        if (hero) {
+            hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+        }
+    });
+
+    // Animation d'apparition des cartes
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll('.restaurant-card').forEach(card => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(30px)';
+        card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        observer.observe(card);
+    });
+</script>
+<script src="js/js.js"></script>
 </body>
 </html>

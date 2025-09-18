@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notre Histoire - Restaurant Roseta</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .story-hero {
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('images/interrieur.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+
+        .story-content {
+            max-width: 900px;
+            margin: 5rem auto;
+            padding: 0 20px;
+            line-height: 1.8;
+        }
+
+        .story-section {
+            margin: 4rem 0;
+        }
+
+        .story-section h2 {
+            color: var(--secondary-color);
+            border-bottom: 3px solid var(--primary-color);
+            padding-bottom: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .story-highlight {
+            background: linear-gradient(135deg, rgba(230, 185, 184, 0.1), rgba(95, 141, 139, 0.1));
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 5px solid var(--accent-color);
+            margin: 2rem 0;
+            font-style: italic;
+            text-align: center;
+            font-size: 1.1rem;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .value-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .value-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .value-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .timeline {
+            position: relative;
+            margin: 3rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--primary-color);
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin: 2rem 0;
+            opacity: 0;
+            animation: fadeInTimeline 0.6s ease forwards;
+        }
+
+        .timeline-item:nth-child(even) {
+            animation-delay: 0.2s;
+        }
+
+        .timeline-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            width: 45%;
+            position: relative;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content {
+            margin-left: 55%;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content {
+            margin-right: 55%;
+        }
+
+        .timeline-date {
+            position: absolute;
+            left: 50%;
+            top: 2rem;
+            transform: translateX(-50%);
+            background: var(--secondary-color);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        @keyframes fadeInTimeline {
+            to {
+                opacity: 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline-content {
+                width: calc(100% - 50px);
+                margin-left: 50px !important;
+                margin-right: 0 !important;
+            }
+
+            .timeline-date {
+                left: 20px;
+                transform: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <nav>
+        <div class="nav-links">
+            <a href="index.html">Accueil</a>
+            <div class="dropdown">
+                <a href="#">Nos Restaurants</a>
+                <div class="dropdown-content">
+                    <a href="roseta-9.html">Roseta 9ème (Halavi)</a>
+                    <a href="roseta-17.html">Roseta 17ème (Halavi)</a>
+                    <a href="roseta-2.html">Roseta 2ème (Bassari)</a>
+                </div>
+            </div>
+        </div>
+        <a href="index.html" class="logo-center">
+            <img src="images/logo.jpg" alt="Logo Roseta">
+        </a>
+        <div class="nav-links">
+            <a href="histoire.html">Notre Histoire</a>
+            <a href="contact.html">Contact</a>
+        </div>
+    </nav>
+
+    <div class="header-mobile">
+        <a href="index.html" class="logo-mobile">
+            <img src="images/logo.jpg" alt="Logo Roseta">
+        </a>
+        <input class="menu-btn" type="checkbox" id="menu-btn" />
+        <label class="menu-icon" for="menu-btn"><span class="nav-icon"></span></label>
+        <div class="menu-mobile">
+            <a href="index.html">Accueil</a>
+            <a href="roseta-9.html">Roseta 9ème</a>
+            <a href="roseta-17.html">Roseta 17ème</a>
+            <a href="roseta-2.html">Roseta 2ème</a>
+            <a href="histoire.html">Notre Histoire</a>
+            <a href="contact.html">Contact</a>
+        </div>
+    </div>
+</header>
+
+<main>
+    <section class="story-hero">
+        <div class="hero-content">
+            <h1>Notre Histoire</h1>
+            <p>Une passion italienne au cœur de Paris</p>
+        </div>
+    </section>
+
+    <div class="story-content">
+        <section class="story-section">
+            <h2>Les Origines</h2>
+            <p>L'histoire de Roseta commence avec une passion profonde pour la cuisine italienne authentique et le respect des traditions culinaires ancestrales. Fondé par une famille passionnée par l'art culinaire italien, notre restaurant est né du désir de partager avec Paris les saveurs authentiques de l'Italie, tout en respectant les certifications Halavi et Bassari.</p>
+
+            <div class="story-highlight">
+                "Notre mission est de préserver l'authenticité italienne tout en s'adaptant aux besoins de notre communauté parisienne"
+            </div>
+
+            <p>Depuis nos débuts, nous nous sommes engagés à utiliser uniquement des ingrédients de première qualité, importés directement d'Italie ou sélectionnés avec soin auprès de producteurs locaux respectant nos standards élevés.</p>
+        </section>
+
+        <section class="story-section">
+            <h2>Nos Valeurs</h2>
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="value-icon">🍝</div>
+                    <h3>Authenticité</h3>
+                    <p>Recettes traditionnelles transmises de génération en génération, respectant les méthodes artisanales italiennes.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">🌿</div>
+                    <h3>Qualité</h3>
+                    <p>Sélection rigoureuse des meilleurs ingrédients, fraîcheur garantie et respect des certifications.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">❤️</div>
+                    <h3>Passion</h3>
+                    <p>Chaque plat est préparé avec amour et dédication par notre équipe de chefs passionnés.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">🤝</div>
+                    <h3>Respect</h3>
+                    <p>Engagement total dans le respect des certifications Halavi et Bassari sans compromis sur le goût.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="story-section">
+            <h2>Notre Évolution</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">2020</div>
+                    <div class="timeline-content">
+                        <h3>Les Débuts</h3>
+                        <p>Ouverture de notre premier restaurant dans le 9ème arrondissement avec une équipe réduite mais passionnée, déterminée à offrir une cuisine italienne authentique certifiée Halavi.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2022</div>
+                    <div class="timeline-content">
+                        <h3>Reconnaissance</h3>
+                        <p>Roseta 9ème devient rapidement une référence pour la cuisine italienne Halavi à Paris, attirant une clientèle fidèle et des critiques élogieuses.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2023</div>
+                    <div class="timeline-content">
+                        <h3>Expansion</h3>
+                        <p>Fort du succès du premier restaurant, nous ouvrons Roseta 17ème, élargissant notre offre Halavi dans un nouveau quartier de Paris.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2024</div>
+                    <div class="timeline-content">
+                        <h3>Diversification</h3>
+                        <p>Lancement de Roseta 2ème, notre première adresse certifiée Bassari, répondant aux demandes de notre communauté grandissante.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2025</div>
+                    <div class="timeline-content">
+                        <h3>L'Avenir</h3>
+                        <p>Continuons à grandir tout en préservant nos valeurs d'authenticité, de qualité et de respect des traditions culinaires italiennes.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="story-section">
+            <h2>Notre Engagement</h2>
+            <p>Chez Roseta, nous croyons que la cuisine est un art qui unit les cultures et les communautés. Notre engagement va au-delà de la simple préparation de plats : nous nous efforçons de créer des expériences culinaires mémorables qui respectent à la fois les traditions italiennes et les exigences de nos certifications.</p>
+
+            <p>Chaque jour, notre équipe travaille avec passion pour vous offrir des plats préparés avec les meilleurs ingrédients, dans le respect total des normes Halavi et Bassari. Cette démarche nous permet de servir une clientèle diverse tout en maintenant l'excellence culinaire qui fait notre réputation.</p>
+
+            <div class="story-highlight">
+                "Roseta, c'est l'Italie qui rencontre Paris, la tradition qui embrasse la modernité"
+            </div>
+        </section>
+    </div>
+</main>
+
+<a href="index.html" id="homeBtn" title="Retour à l'accueil">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8h5z"/></svg>
+</a>
+
+<footer>
+    <div class="footer-grid">
+        <div class="footer-col">
+            <img src="images/logo.jpg" alt="Logo Roseta" class="logo-footer">
+            <p>Cuisine Italienne d'Exception, Halavi & Bassari à Paris.</p>
+        </div>
+        <div class="footer-col">
+            <h4>Nos Restaurants</h4>
+            <ul>
+                <li><a href="roseta-9.html">Roseta 9ème (Halavi)</a></li>
+                <li><a href="roseta-17.html">Roseta 17ème (Halavi)</a></li>
+                <li><a href="roseta-2.html">Roseta 2ème (Bassari)</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Liens Utiles</h4>
+            <ul>
+                <li><a href="histoire.html">Notre Histoire</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Suivez-nous</h4>
+            <p><a href="#" target="_blank">Instagram</a></p>
+            <p><a href="#" target="_blank">Facebook</a></p>
+        </div>
+    </div>
+    <div class="footer-copyright">
+        <p>© 2025 Restaurant Roseta. Tous droits réservés.</p>
+    </div>
+</footer>
+
+<script>
+    // Animation des éléments de la timeline au scroll
+    const timelineItems = document.querySelectorAll('.timeline-item');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.animationPlayState = 'running';
+            }
+        });
+    }, { threshold: 0.5 });
+
+    timelineItems.forEach(item => {
+        item.style.animationPlayState = 'paused';
+        observer.observe(item);
+    });
+</script>
+
+</body>
+</html>
