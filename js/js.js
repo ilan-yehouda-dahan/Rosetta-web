@@ -308,3 +308,172 @@ const additionalCSS = `
     background: var(--secondary-color);
 }
 `;
+// Corrections JavaScript pour mobile - À ajouter à vos scripts
+
+document.addEventListener('DOMContentLoaded', function() {
+
+    // 1. Détection mobile
+    const isMobile = window.innerWidth <= 768;
+
+    // 2. Fix du viewport mobile (évite le zoom sur les input)
+    if (isMobile) {
+        const viewport = document.querySelector('meta[name=viewport]');
+        if (viewport) {
+            viewport.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no');
+        }
+    }
+
+    // 3. Fermeture automatique du menu mobile lors du scroll
+    let isScrolling = false;
+    window.addEventListener('scroll', function() {
+        if (isMobile && !isScrolling) {
+            const menuBtn = document.getElementById('menu-btn');
+            if (menuBtn && menuBtn.checked) {
+                menuBtn.checked = false;
+            }
+        }
+    });
+
+    // 4. Amélioration du smooth scroll sur mobile
+    if (isMobile) {
+        const menuLinks = document.querySelectorAll('.menu-nav a[href^="#"]');
+        menuLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+
+                if (targetElement) {
+                    const headerHeight = 60; // Header mobile height
+                    const menuNavHeight = 50; // Menu nav mobile height
+                    const offset = targetElement.offsetTop - headerHeight - menuNavHeight - 10;
+
+                    window.scrollTo({
+                        top: offset,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    }
+
+    // 5. Prévenir le scroll du body quand le menu mobile est ouvert
+    const menuBtn = document.getElementById('menu-btn');
+    if (menuBtn && isMobile) {
+        menuBtn.addEventListener('change', function() {
+            if (this.checked) {
+                document.body.style.overflow = 'hidden';
+                document.body.style.position = 'fixed';
+                document.body.style.width = '100%';
+            } else {
+                document.body.style.overflow = '';
+                document.body.style.position = '';
+                document.body.style.width = '';
+            }
+        });
+    }
+
+    // 6. Optimisation des images pour mobile
+    if (isMobile) {
+        const images = document.querySelectorAll('img');
+        images.forEach(img => {
+            // Loading lazy pour économiser la bande passante
+            img.setAttribute('loading', 'lazy');
+
+            // Réduire la qualité sur mobile si nécessaire
+            if (img.src && img.src.includes('.jpg')) {
+                // Vous pouvez créer des versions mobile de vos images
+                // img.src = img.src.replace('.jpg', '_mobile.jpg');
+            }
+        });
+    }
+
+    // 7. Touch gestures pour la galerie (optionnel)
+    if (isMobile) {
+        let startX = 0;
+        let startY = 0;
+
+        document.addEventListener('touchstart', function(e) {
+            startX = e.touches[0].clientX;
+            startY = e.touches[0].clientY;
+        });
+
+        document.addEventListener('touchmove', function(e) {
+            if (!startX || !startY) return;
+
+            const diffX = startX - e.touches[0].clientX;
+            const diffY = startY - e.touches[0].clientY;
+
+            // Swipe horizontal pour navigation (si vous voulez ajouter cette fonctionnalité)
+            if (Math.abs(diffX) > Math.abs(diffY)) {
+                if (diffX > 50) {
+                    // Swipe left
+                } else if (diffX < -50) {
+                    // Swipe right
+                }
+            }
+
+            startX = 0;
+            startY = 0;
+        });
+    }
+
+    // 8. Resize handler pour ajuster l'affichage
+    let resizeTimeout;
+    window.addEventListener('resize', function() {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(function() {
+            const newIsMobile = window.innerWidth <= 768;
+
+            // Réinitialiser les styles si on passe de mobile à desktop ou vice versa
+            if (newIsMobile !== isMobile) {
+                location.reload();
+            }
+        }, 250);
+    });
+
+    // 9. Fix pour Safari iOS (problème de hauteur viewport)
+    if (isMobile && /iPhone|iPad|iPod/.test(navigator.userAgent)) {
+        const setVH = () => {
+            const vh = window.innerHeight * 0.01;
+            document.documentElement.style.setProperty('--vh', `${vh}px`);
+        };
+
+        setVH();
+        window.addEventListener('resize', setVH);
+        window.addEventListener('orientationchange', setVH);
+    }
+
+    // 10. Performance - Débounce du scroll
+    let ticking = false;
+    function updateOnScroll() {
+        // Vos fonctions de scroll ici
+        ticking = false;
+    }
+
+    function requestTick() {
+        if (!ticking) {
+            requestAnimationFrame(updateOnScroll);
+            ticking = true;
+        }
+    }
+
+    window.addEventListener('scroll', requestTick);
+});
+
+// CSS pour Safari iOS (à ajouter dans votre CSS)
+const safariIOSStyles = `
+@supports (-webkit-touch-callout: none) {
+    .menu-mobile {
+        height: 100vh;
+        height: calc(var(--vh, 1vh) * 100);
+    }
+}
+`;
+
+// Injecter les styles Safari iOS
+if (/iPhone|iPad|iPod/.test(navigator.userAgent)) {
+    const style = document.createElement('style');
+    style.textContent = safariIOSStyles;
+    document.head.appendChild(style);
+}
