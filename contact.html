@@ -6,54 +6,475 @@
     <title>Contact - Restaurant Roseta</title>
     <link rel="stylesheet" href="css/style.css">
     <style>
+        :root {
+            --primary-color: #E6B9B8;
+            --secondary-color: #5F8D8B;
+            --accent-color: #B17D7C;
+            --text-brun: #4a4a4a;
+            --font-body: 'Georgia', serif;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+            color: white;
+            padding: 3rem 0 1rem;
+            margin-top: 5rem;
+        }
+
+        .footer-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-col h4 {
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-col a {
+            color: rgba(255,255,255,0.9);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-col a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+
+        .logo-footer {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin-bottom: 1rem;
+        }
+
+        .footer-description {
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        .footer-socials {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-3px);
+        }
+
+        .footer-contact-info .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 1rem;
+        }
+
+        .footer-contact-info .contact-icon {
+            font-size: 1.2rem;
+        }
+
+        .footer-hours .hour-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .footer-copyright {
+            text-align: center;
+            padding: 2rem 0 1rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            opacity: 0.8;
+        }
+
+        /* Bouton retour accueil */
+        #homeBtn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            z-index: 999;
+        }
+
+        #homeBtn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+        }
+
+        #homeBtn svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--text-brun);
+            line-height: 1.6;
+            background: #fcfbf9;
+        }
+
+        /* Header Navigation */
+        header {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-brun);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary-color);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--secondary-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .logo-center {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-center img {
+            height: 60px;
+            width: auto;
+        }
+
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            min-width: 250px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            border-radius: 10px;
+            padding: 1rem 0;
+            margin-top: 0.5rem;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown-content a {
+            display: block;
+            padding: 0.8rem 1.5rem;
+            color: var(--text-brun);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .dropdown-content a:hover {
+            background: var(--primary-color);
+            color: var(--secondary-color);
+        }
+
+        /* Mobile Navigation */
+        .header-mobile {
+            display: none;
+        }
+
+        @media (max-width: 968px) {
+            nav {
+                display: none;
+            }
+
+            .header-mobile {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 1rem 2rem;
+            }
+
+            .logo-mobile img {
+                height: 50px;
+            }
+
+            .menu-btn {
+                display: none;
+            }
+
+            .menu-icon {
+                cursor: pointer;
+                display: inline-block;
+                padding: 28px 20px;
+                position: relative;
+                user-select: none;
+            }
+
+            .menu-icon .nav-icon {
+                background: var(--secondary-color);
+                display: block;
+                height: 2px;
+                position: relative;
+                transition: background 0.2s ease-out;
+                width: 24px;
+            }
+
+            .menu-icon .nav-icon:before,
+            .menu-icon .nav-icon:after {
+                background: var(--secondary-color);
+                content: '';
+                display: block;
+                height: 100%;
+                position: absolute;
+                transition: all 0.2s ease-out;
+                width: 100%;
+            }
+
+            .menu-icon .nav-icon:before {
+                top: -7px;
+            }
+
+            .menu-icon .nav-icon:after {
+                top: 7px;
+            }
+
+            .menu-btn:checked ~ .menu-icon .nav-icon {
+                background: transparent;
+            }
+
+            .menu-btn:checked ~ .menu-icon .nav-icon:before {
+                transform: rotate(-45deg);
+                top: 0;
+            }
+
+            .menu-btn:checked ~ .menu-icon .nav-icon:after {
+                transform: rotate(45deg);
+                top: 0;
+            }
+
+            .menu-mobile {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: white;
+                box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+                padding: 1rem 0;
+            }
+
+            .menu-btn:checked ~ .menu-mobile {
+                display: block;
+            }
+
+            .menu-mobile a {
+                display: block;
+                padding: 1rem 2rem;
+                color: var(--text-brun);
+                text-decoration: none;
+                transition: all 0.3s ease;
+            }
+
+            .menu-mobile a:hover {
+                background: var(--primary-color);
+                color: var(--secondary-color);
+            }
+        }
+
+        /* Hero Section Moderne */
         .contact-hero {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            padding: 4rem 0;
+            background: linear-gradient(135deg, var(--secondary-color) 0%, var(--accent-color) 100%);
+            padding: 8rem 0 6rem;
             text-align: center;
             color: white;
+            position: relative;
+            overflow: hidden;
         }
 
-        .contact-content {
-            max-width: 1200px;
-            margin: 5rem auto;
+        .contact-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='rgba(255,255,255,0.05)' fill-opacity='0.4'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.3;
+        }
+
+        .contact-hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            margin-bottom: 1rem;
+            font-weight: 700;
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-hero p {
+            font-size: clamp(1.1rem, 3vw, 1.5rem);
+            opacity: 0.95;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Section principale */
+        .contact-wrapper {
+            max-width: 1400px;
+            margin: -4rem auto 5rem;
             padding: 0 20px;
+            position: relative;
+            z-index: 10;
         }
 
-        .contact-grid {
+        /* Formulaire de contact stylisé */
+        .contact-form-section {
+            background: white;
+            border-radius: 25px;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.15);
+            padding: 4rem;
+            margin-bottom: 5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-form-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color), var(--accent-color));
+        }
+
+        .contact-form-section h2 {
+            color: var(--secondary-color);
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .contact-form-section .subtitle {
+            text-align: center;
+            color: #666;
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+        }
+
+        .form-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            margin: 3rem 0;
-        }
-
-        .contact-form {
-            background: white;
-            padding: 3rem;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            gap: 2rem;
+            margin-bottom: 2rem;
         }
 
         .form-group {
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
         }
 
         .form-group label {
             display: block;
-            margin-bottom: 0.5rem;
-            font-weight: bold;
-            color: var(--text-brun);
+            margin-bottom: 0.8rem;
+            font-weight: 600;
+            color: var(--secondary-color);
+            font-size: 1rem;
+        }
+
+        .form-group label .required {
+            color: var(--accent-color);
+            margin-left: 4px;
         }
 
         .form-group input,
         .form-group textarea,
         .form-group select {
             width: 100%;
-            padding: 12px 15px;
-            border: 2px solid #e0e0e0;
-            border-radius: 8px;
+            padding: 15px 20px;
+            border: 2px solid #e8e8e8;
+            border-radius: 12px;
             font-size: 1rem;
-            transition: border-color 0.3s ease;
-            font-family: var(--font-body);
+            transition: all 0.3s ease;
+            font-family: inherit;
+            background: #fafafa;
         }
 
         .form-group input:focus,
@@ -61,92 +482,55 @@
         .form-group select:focus {
             outline: none;
             border-color: var(--secondary-color);
-            box-shadow: 0 0 0 3px rgba(95, 141, 139, 0.1);
+            background: white;
+            box-shadow: 0 0 0 4px rgba(95, 141, 139, 0.1);
+            transform: translateY(-2px);
         }
 
         .form-group textarea {
-            height: 120px;
+            min-height: 180px;
             resize: vertical;
         }
 
-        .restaurants-list {
-            display: grid;
-            gap: 2rem;
-        }
-
-        .restaurant-contact {
-            background: white;
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
-        }
-
-        .restaurant-contact:hover {
-            transform: translateY(-5px);
-        }
-
-        .restaurant-contact h3 {
-            color: var(--secondary-color);
-            margin-bottom: 1rem;
-            text-align: left;
-        }
-
-        .contact-info {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-
-        .contact-info div {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .contact-info .icon {
-            width: 20px;
-            height: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: var(--primary-color);
-            border-radius: 50%;
-            color: white;
-            font-size: 0.8rem;
-        }
-
-        .hours-table {
-            width: 100%;
-            margin-top: 1rem;
-        }
-
-        .hours-table td {
-            padding: 0.5rem;
-            border-bottom: 1px solid #f0f0f0;
-        }
-
-        .hours-table td:first-child {
-            font-weight: bold;
-            color: var(--text-brun);
-        }
-
         .btn-submit {
-            background: var(--secondary-color);
+            background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
             color: white;
-            padding: 15px 30px;
+            padding: 18px 50px;
             border: none;
-            border-radius: 8px;
-            font-size: 1.1rem;
-            font-weight: bold;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             width: 100%;
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-submit::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .btn-submit:hover::before {
+            left: 100%;
         }
 
         .btn-submit:hover {
-            background: var(--accent-color);
-            transform: translateY(-2px);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(95, 141, 139, 0.4);
+        }
+
+        .btn-submit:active {
+            transform: translateY(-1px);
         }
 
         .btn-submit:disabled {
@@ -155,32 +539,185 @@
             transform: none;
         }
 
-        .form-success,
-        .form-error {
-            padding: 1rem;
-            border-radius: 8px;
-            margin-bottom: 1rem;
+        /* Messages de succès/erreur */
+        .form-message {
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
             text-align: center;
-            font-weight: bold;
+            font-weight: 600;
+            display: none;
+            animation: slideDown 0.3s ease;
         }
 
-        .form-success {
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .form-message.success {
             background: #d4edda;
             color: #155724;
-            border: 1px solid #c3e6cb;
+            border: 2px solid #c3e6cb;
+            display: block;
         }
 
-        .form-error {
+        .form-message.error {
             background: #f8d7da;
             color: #721c24;
-            border: 1px solid #f5c6cb;
+            border: 2px solid #f5c6cb;
+            display: block;
+        }
+
+        /* Section Restaurants */
+        .restaurants-section {
+            margin-bottom: 5rem;
+        }
+
+        .restaurants-section h2 {
+            text-align: center;
+            font-size: 2.8rem;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+
+        .restaurants-section .subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 4rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .restaurants-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+        }
+
+        .restaurant-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            transition: all 0.4s ease;
+        }
+
+        .restaurant-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+        }
+
+        .restaurant-card-header {
+            background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .restaurant-card-header h3 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .restaurant-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            backdrop-filter: blur(10px);
+        }
+
+        .restaurant-card-body {
+            padding: 2rem;
+        }
+
+        .contact-info {
+            margin-bottom: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 1rem;
+            padding: 0.8rem;
+            border-radius: 10px;
+            transition: background 0.3s ease;
+        }
+
+        .contact-item:hover {
+            background: #f8f8f8;
+        }
+
+        .contact-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .contact-item a {
+            color: var(--text-brun);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-item a:hover {
+            color: var(--secondary-color);
+        }
+
+        .hours-title {
+            font-weight: 700;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .hours-table {
+            width: 100%;
+            border-spacing: 0;
+        }
+
+        .hours-table tr {
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .hours-table td {
+            padding: 0.8rem 0;
+        }
+
+        .hours-table td:first-child {
+            font-weight: 600;
+            color: var(--text-brun);
+        }
+
+        .hours-table td:last-child {
+            text-align: right;
+            color: #666;
         }
 
         .map-container {
-            height: 300px;
+            height: 250px;
             border-radius: 15px;
             overflow: hidden;
-            margin-top: 1rem;
+            margin-top: 1.5rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
         }
 
         .map-container iframe {
@@ -189,52 +726,92 @@
             border: none;
         }
 
+        /* FAQ Section */
         .faq-section {
-            margin: 5rem 0;
+            max-width: 900px;
+            margin: 5rem auto;
+        }
+
+        .faq-section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 3rem;
         }
 
         .faq-item {
             background: white;
             margin-bottom: 1rem;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
             overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
         }
 
         .faq-question {
-            background: var(--primary-color);
+            background: white;
             color: var(--text-brun);
-            padding: 1.5rem;
+            padding: 1.5rem 2rem;
             cursor: pointer;
-            font-weight: bold;
-            transition: background-color 0.3s ease;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-question::after {
+            content: '+';
+            font-size: 1.8rem;
+            color: var(--secondary-color);
+            transition: transform 0.3s ease;
+        }
+
+        .faq-question.active::after {
+            transform: rotate(45deg);
         }
 
         .faq-question:hover {
-            background: var(--accent-color);
-            color: white;
+            background: var(--primary-color);
+            color: var(--secondary-color);
         }
 
         .faq-answer {
-            padding: 0 1.5rem;
+            padding: 0 2rem;
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.3s ease, padding 0.3s ease;
+            transition: all 0.4s ease;
+            color: #666;
+            line-height: 1.8;
         }
 
         .faq-answer.active {
-            padding: 1.5rem;
-            max-height: 200px;
+            padding: 1.5rem 2rem;
+            max-height: 300px;
         }
 
+        /* Responsive */
         @media (max-width: 768px) {
-            .contact-grid {
-                grid-template-columns: 1fr;
-                gap: 2rem;
+            .contact-form-section {
+                padding: 2rem;
             }
 
-            .contact-form {
-                padding: 2rem;
+            .form-grid {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+
+            .restaurants-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-hero {
+                padding: 6rem 0 4rem;
             }
         }
     </style>
@@ -281,18 +858,39 @@
 </header>
 
 <main>
+
     <section class="contact-hero">
-        <h1>Nous Contacter</h1>
-        <p>Une question ? Une réservation ? Nous sommes là pour vous</p>
+        <h1>Contactez-Nous</h1>
+        <p>Une question ? Une réservation ? Nous sommes à votre écoute</p>
     </section>
 
-    <div class="contact-content">
-        <div class="contact-grid">
-            <div class="contact-form">
-                <h2>Envoyez-nous un message</h2>
-                <form action="http://googleusercontent.com/search?q=ilanndahan@gmail.com" method="POST">
+    <div class="contact-wrapper">
+        <!-- Formulaire de Contact -->
+        <section class="contact-form-section">
+            <h2>Envoyez-nous un Message</h2>
+            <p class="subtitle">Remplissez le formulaire ci-dessous et nous vous répondrons dans les plus brefs délais</p>
+
+            <div id="formMessage" class="form-message"></div>
+
+            <form id="contactForm">
+                <div class="form-grid">
                     <div class="form-group">
-                        <label for="restaurant">Restaurant concerné</label>
+                        <label for="name">Nom complet <span class="required">*</span></label>
+                        <input type="text" id="name" name="name" required placeholder="Votre nom">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email <span class="required">*</span></label>
+                        <input type="email" id="email" name="email" required placeholder="votre@email.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Téléphone</label>
+                        <input type="tel" id="phone" name="phone" placeholder="06 12 34 56 78">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="restaurant">Restaurant concerné <span class="required">*</span></label>
                         <select id="restaurant" name="restaurant" required>
                             <option value="">Sélectionnez un restaurant</option>
                             <option value="roseta-9">Roseta 9ème (Halavi)</option>
@@ -302,139 +900,168 @@
                         </select>
                     </div>
 
-                    <div class="form-group">
-                        <label for="subject">Sujet</label>
+                    <div class="form-group full-width">
+                        <label for="subject">Sujet <span class="required">*</span></label>
                         <select id="subject" name="subject" required>
                             <option value="">Sélectionnez un sujet</option>
                             <option value="reservation">Réservation</option>
-                            <option value="feedback">Avis/Suggestion</option>
+                            <option value="feedback">Avis / Suggestion</option>
+                            <option value="information">Demande d'information</option>
                             <option value="other">Autre</option>
                         </select>
                     </div>
 
-                    <div class="form-group">
-                        <label for="name">Nom complet *</label>
-                        <input type="text" id="name" name="name" required>
+                    <div class="form-group full-width">
+                        <label for="message">Votre message <span class="required">*</span></label>
+                        <textarea id="message" name="message" required placeholder="Décrivez votre demande en détail..."></textarea>
                     </div>
+                </div>
 
-                    <div class="form-group">
-                        <label for="email">Email *</label>
-                        <input type="email" id="email" name="email" required>
+                <button type="submit" class="btn-submit">Envoyer le Message</button>
+            </form>
+        </section>
+
+        <!-- Section Restaurants -->
+        <section class="restaurants-section">
+            <h2>Nos Restaurants</h2>
+            <p class="subtitle">Retrouvez-nous dans nos trois adresses à Paris</p>
+
+            <div class="restaurants-grid">
+                <!-- Roseta 9ème -->
+                <div class="restaurant-card">
+                    <div class="restaurant-card-header">
+                        <h3>🍕 Roseta 9ème</h3>
+                        <span class="restaurant-badge">Halavi</span>
                     </div>
+                    <div class="restaurant-card-body">
+                        <div class="contact-info">
+                            <div class="contact-item">
+                                <div class="contact-icon">📍</div>
+                                <div>
+                                    <strong>Adresse</strong><br>
+                                    3 Rue Geoffroy-Marie, 75009 Paris
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-icon">📞</div>
+                                <div>
+                                    <strong>Téléphone</strong><br>
+                                    <a href="tel:0147700076">01 47 70 00 76</a>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-icon">✉️</div>
+                                <div>
+                                    <strong>Email</strong><br>
+                                    <a href="mailto:roseta9@restaurant-roseta.fr">roseta9@restaurant-roseta.fr</a>
+                                </div>
+                            </div>
+                        </div>
 
-                    <div class="form-group">
-                        <label for="phone">Téléphone</label>
-                        <input type="tel" id="phone" name="phone">
+                        <div class="hours-title">Horaires d'ouverture</div>
+                        <table class="hours-table">
+                            <tr><td>Lundi - Jeudi</td><td>12h-14h30 / 19h-22h30</td></tr>
+                            <tr><td>Vendredi - Samedi</td><td>Fermé</td></tr>
+                            <tr><td>Dimanche</td><td>12h-14h30 / 19h-22h30</td></tr>
+                        </table>
+
+                        <div class="map-container">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2624.321355410148!2d2.343100676882236!3d48.87121799988235!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66e3e48c14a55%3A0xac1e4209513e9365!2s3%20Rue%20Geoffroy-Marie%2C%2075009%20Paris%2C%20France!5e0!3m2!1sen!2sfr!4v1663584521890!5m2!1sen!2sfr" allowfullscreen="" loading="lazy"></iframe>
+                        </div>
                     </div>
+                </div>
 
-                    <div class="form-group">
-                        <label for="message">Message *</label>
-                        <textarea id="message" name="message" placeholder="Décrivez votre demande..." required></textarea>
+                <!-- Roseta 17ème -->
+                <div class="restaurant-card">
+                    <div class="restaurant-card-header">
+                        <h3>🍝 Roseta 17ème</h3>
+                        <span class="restaurant-badge">Halavi</span>
                     </div>
+                    <div class="restaurant-card-body">
+                        <div class="contact-info">
+                            <div class="contact-item">
+                                <div class="contact-icon">📍</div>
+                                <div>
+                                    <strong>Adresse</strong><br>
+                                    73 Rue de Prony, 75017 Paris
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-icon">📞</div>
+                                <div>
+                                    <strong>Téléphone</strong><br>
+                                    <a href="tel:0145745474">01 45 74 54 74</a>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-icon">✉️</div>
+                                <div>
+                                    <strong>Email</strong><br>
+                                    <a href="mailto:roseta17@restaurant-roseta.fr">roseta17@restaurant-roseta.fr</a>
+                                </div>
+                            </div>
+                        </div>
 
-                    <button type="submit" class="btn-submit">Envoyer le message</button>
-                </form>
+                        <div class="hours-title">Horaires d'ouverture</div>
+                        <table class="hours-table">
+                            <tr><td>Lundi - Jeudi</td><td>12h-14h30 / 19h-22h30</td></tr>
+                            <tr><td>Vendredi</td><td>12h-14h30</td></tr>
+                            <tr><td>Samedi</td><td>Fermé</td></tr>
+                            <tr><td>Dimanche</td><td>12h-14h30 / 19h-22h30</td></tr>
+                        </table>
+
+                        <div class="map-container">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2623.593722778736!2d2.301385476882947!3d48.88514109923838!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66f91a6b0c2a5%3A0x6a11b6857187611c!2s73%20Rue%20de%20Prony%2C%2075017%20Paris%2C%20France!5e0!3m2!1sen!2sfr!4v1663584620571!5m2!1sen!2sfr" allowfullscreen="" loading="lazy"></iframe>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Roseta 2ème -->
+                <div class="restaurant-card">
+                    <div class="restaurant-card-header">
+                        <h3>🍕 Roseta 2ème</h3>
+                        <span class="restaurant-badge">Bassari</span>
+                    </div>
+                    <div class="restaurant-card-body">
+                        <div class="contact-info">
+                            <div class="contact-item">
+                                <div class="contact-icon">📍</div>
+                                <div>
+                                    <strong>Adresse</strong><br>
+                                    98 Rue Montmartre, 75002 Paris
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-icon">📞</div>
+                                <div>
+                                    <strong>Téléphone</strong><br>
+                                    <a href="tel:0142213868">01 42 21 38 68</a>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-icon">✉️</div>
+                                <div>
+                                    <strong>Email</strong><br>
+                                    <a href="mailto:roseta2@restaurant-roseta.fr">roseta2@restaurant-roseta.fr</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="hours-title">Horaires d'ouverture</div>
+                        <table class="hours-table">
+                            <tr><td>Dimanche - Jeudi</td><td>12h-15h / 19h-23h</td></tr>
+                            <tr><td>Vendredi - Samedi</td><td>Fermé</td></tr>
+                        </table>
+
+                        <div class="map-container">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2624.464525890918!2d2.343588976882068!3d48.868516999971956!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66e3b08e7529d%3A0xe5433a76e7920e8b!2s98%20Rue%20Montmartre%2C%2075002%20Paris%2C%20France!5e0!3m2!1sen!2sfr!4v1663584687315!5m2!1sen!2sfr" allowfullscreen="" loading="lazy"></iframe>
+                        </div>
+                    </div>
+                </div>
             </div>
+        </section>
 
-            <div class="restaurants-list">
-                <div class="restaurant-contact">
-                    <h3>🍕 Roseta 9ème (Halavi)</h3>
-                    <div class="contact-info">
-                        <div>
-                            <span class="icon">📍</span>
-                            <span>3 Rue Geoffroy-Marie, 75009 Paris</span>
-                        </div>
-                        <div>
-                            <span class="icon">📞</span>
-                            <span><a href="tel:
-01 47 70 00 76
-">
-01 23 45 67 89
-</a></span>
-                        </div>
-                        <div>
-                            <span class="icon">✉️</span>
-                            <span><a href="mailto:roseta9@restaurant-roseta.fr">roseta9@restaurant-roseta.fr</a></span>
-                        </div>
-                    </div>
-
-                    <table class="hours-table">
-                        <tr><td>Lundi - Jeudi</td><td>12h-14h30 / 19h-22h30</td></tr>
-                        <tr><td>Vendredi-Samedi</td><td>Fermé</td></tr>
-                        <tr><td>Dimanche</td><td>12h-14h30 / 19h-22h30</td></tr>
-                    </table>
-
-                    <div class="map-container">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2624.321355410148!2d2.343100676882236!3d48.87121799988235!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66e3e48c14a55%3A0xac1e4209513e9365!2s3%20Rue%20Geoffroy-Marie%2C%2075009%20Paris%2C%20France!5e0!3m2!1sen!2sfr!4v1663584521890!5m2!1sen!2sfr" allowfullscreen="" loading="lazy"></iframe>
-                    </div>
-                </div>
-
-                <div class="restaurant-contact">
-                    <h3>🍝 Roseta 17ème (Halavi)</h3>
-                    <div class="contact-info">
-                        <div>
-                            <span class="icon">📍</span>
-                            <span>73 Rue de Prony, 75017 Paris</span>
-                        </div>
-                        <div>
-                            <span class="icon">📞</span>
-                            <span><a href="tel:
-01 45 74 54 74
-">
-01 23 45 67 90
-</a></span>
-                        </div>
-                        <div>
-                            <span class="icon">✉️</span>
-                            <span><a href="mailto:roseta17@restaurant-roseta.fr">roseta17@restaurant-roseta.fr</a></span>
-                        </div>
-                    </div>
-
-                    <table class="hours-table">
-                        <tr><td>Lundi - Jeudi</td><td>12h-14h30 / 19h-22h30</td></tr>
-                        <tr><td>Vendredi</td><td>12h-14h30</td></tr>
-                        <tr><td>Samedi</td><td>Fermé</td></tr>
-                        <tr><td>Dimanche</td><td>12h-14h30 / 19h-22h30</td></tr>
-                    </table>
-
-                    <div class="map-container">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2623.593722778736!2d2.301385476882947!3d48.88514109923838!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66f91a6b0c2a5%3A0x6a11b6857187611c!2s73%20Rue%20de%20Prony%2C%2075017%20Paris%2C%20France!5e0!3m2!1sen!2sfr!4v1663584620571!5m2!1sen!2sfr" allowfullscreen="" loading="lazy"></iframe>
-                    </div>
-                </div>
-
-                <div class="restaurant-contact">
-                    <h3>🍕 Roseta 2ème (Bassari)</h3>
-                    <div class="contact-info">
-                        <div>
-                            <span class="icon">📍</span>
-                            <span>98 Rue Montmartre, 75002 Paris</span>
-                        </div>
-                        <div>
-                            <span class="icon">📞</span>
-                            <span><a href="tel:
-01 42 21 38 68
-">
-01 23 45 67 91
-</a></span>
-                        </div>
-                        <div>
-                            <span class="icon">✉️</span>
-                            <span><a href="mailto:roseta2@restaurant-roseta.fr">roseta2@restaurant-roseta.fr</a></span>
-                        </div>
-                    </div>
-
-                    <table class="hours-table">
-                        <tr><td>Dimanche - Jeudi</td><td>12h-15h / 19h-23h</td></tr>
-                        <tr><td>Vendredi-Samedi</td><td>Fermé</td></tr>
-                    </table>
-
-                    <div class="map-container">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2624.464525890918!2d2.343588976882068!3d48.868516999971956!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66e3b08e7529d%3A0xe5433a76e7920e8b!2s98%20Rue%20Montmartre%2C%2075002%20Paris%2C%20France!5e0!3m2!1sen!2sfr!4v1663584687315!5m2!1sen!2sfr" allowfullscreen="" loading="lazy"></iframe>
-                    </div>
-                </div>
-            </div>
-        </div>
-
+        <!-- FAQ Section -->
         <section class="faq-section">
             <h2>Questions Fréquentes</h2>
 
@@ -484,6 +1111,7 @@
             </div>
         </section>
     </div>
+
 </main>
 
 <a href="index.html" id="homeBtn" title="Retour à l'accueil">
@@ -494,8 +1122,21 @@
     <div class="footer-grid">
         <div class="footer-col">
             <img src="images/logo.jpg" alt="Logo Roseta" class="logo-footer">
-            <p>Cuisine Italienne d'Exception, Halavi & Bassari à Paris.</p>
+            <p class="footer-description">Cuisine Italienne d'Exception, Halavi & Bassari à Paris.</p>
+            <div class="footer-socials">
+                <a href="https://www.instagram.com/grupporosetta/" target="_blank" class="social-link" title="Instagram">
+                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                    </svg>
+                </a>
+                <a href="#" target="_blank" class="social-link" title="Facebook">
+                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/>
+                    </svg>
+                </a>
+            </div>
         </div>
+
         <div class="footer-col">
             <h4>Nos Restaurants</h4>
             <ul>
@@ -504,97 +1145,94 @@
                 <li><a href="roseta-2.html">Roseta 2ème (Bassari)</a></li>
             </ul>
         </div>
+
         <div class="footer-col">
             <h4>Contact</h4>
-            <ul>
-                <li><a href="tel:
-+33123456789
-">
-                    01 23 45 67 89
-                </a></li>
-                <li><a href="mailto:ilanndahan@gmail.com">contact@restaurant-roseta.fr</a></li>
-            </ul>
+            <div class="footer-contact-info">
+                <div class="contact-item">
+                    <div class="contact-icon">📞</div>
+                    <a href="tel:0147700076">01 47 70 00 76</a>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">✉️</div>
+                    <a href="mailto:ilanndahan@gmail.com">contact@restaurant-roseta.fr</a>
+                </div>
+            </div>
         </div>
+
         <div class="footer-col">
             <h4>Suivez-nous</h4>
-            <p><a href="#" target="_blank">Instagram</a></p>
+            <p><a href="https://www.instagram.com/grupporosetta/" target="_blank">Instagram</a></p>
             <p><a href="#" target="_blank">Facebook</a></p>
         </div>
     </div>
+
     <div class="footer-copyright">
         <p>© 2025 Restaurant Roseta. Tous droits réservés.</p>
     </div>
 </footer>
 
 <script>
-    // Gestion du formulaire de contact
+    // Gestion du formulaire avec envoi par email
     document.getElementById('contactForm').addEventListener('submit', function(e) {
         e.preventDefault();
 
         const submitBtn = document.querySelector('.btn-submit');
+        const formMessage = document.getElementById('formMessage');
+
+        // Désactiver le bouton pendant l'envoi
         submitBtn.disabled = true;
         submitBtn.textContent = 'Envoi en cours...';
 
-        // Simulation d'envoi (remplacer par votre logique d'envoi réelle)
+        // Récupérer les données du formulaire
+        const formData = {
+            name: document.getElementById('name').value,
+            email: document.getElementById('email').value,
+            phone: document.getElementById('phone').value,
+            restaurant: document.getElementById('restaurant').value,
+            subject: document.getElementById('subject').value,
+            message: document.getElementById('message').value
+        };
+
+        // Créer le contenu de l'email
+        const emailBody = `
+Nouveau message de contact depuis le site Roseta
+
+Nom: ${formData.name}
+Email: ${formData.email}
+Téléphone: ${formData.phone || 'Non renseigné'}
+Restaurant concerné: ${formData.restaurant}
+Sujet: ${formData.subject}
+
+Message:
+${formData.message}
+    `.trim();
+
+        // Créer le lien mailto
+        const mailtoLink = `mailto:ilanndahan@gmail.com?subject=${encodeURIComponent('Contact Roseta - ' + formData.subject)}&body=${encodeURIComponent(emailBody)}`;
+
+        // Ouvrir le client email
+        window.location.href = mailtoLink;
+
+        // Afficher le message de succès
+        formMessage.className = 'form-message success';
+        formMessage.textContent = '✓ Votre client email a été ouvert. Veuillez envoyer le message pour finaliser votre demande.';
+        formMessage.style.display = 'block';
+
+        // Réinitialiser le formulaire
         setTimeout(() => {
-            showMessage('Votre message a été envoyé avec succès ! Nous vous répondrons dans les plus brefs délais.', 'success');
             this.reset();
             submitBtn.disabled = false;
-            submitBtn.textContent = 'Envoyer le message';
-        }, 2000);
+            submitBtn.textContent = 'Envoyer le Message';
+
+            // Masquer le message après 8 secondes
+            setTimeout(() => {
+                formMessage.style.display = 'none';
+            }, 8000);
+        }, 1000);
     });
 
-    // Fonction pour afficher les messages
-    function showMessage(message, type) {
-        const existingMessage = document.querySelector('.form-success, .form-error');
-        if (existingMessage) {
-            existingMessage.remove();
-        }
-
-        const messageDiv = document.createElement('div');
-        messageDiv.className = type === 'success' ? 'form-success' : 'form-error';
-        messageDiv.textContent = message;
-
-        const form = document.getElementById('contactForm');
-        form.insertBefore(messageDiv, form.firstChild);
-
-        // Faire disparaître le message après 5 secondes
-        setTimeout(() => {
-            messageDiv.remove();
-        }, 5000);
-    }
-
-    // Fonction pour toggle les FAQ
-    function toggleFaq(element) {
-        const answer = element.nextElementSibling;
-        const allAnswers = document.querySelectorAll('.faq-answer');
-        const allQuestions = document.querySelectorAll('.faq-question');
-
-        // Fermer toutes les autres FAQ
-        allAnswers.forEach(ans => {
-            if (ans !== answer) {
-                ans.classList.remove('active');
-            }
-        });
-
-        allQuestions.forEach(q => {
-            if (q !== element) {
-                q.style.backgroundColor = '';
-            }
-        });
-
-        // Toggle la FAQ actuelle
-        answer.classList.toggle('active');
-        if (answer.classList.contains('active')) {
-            element.style.backgroundColor = 'var(--secondary-color)';
-            element.style.color = 'white';
-        } else {
-            element.style.backgroundColor = '';
-            element.style.color = '';
-        }
-    }
-
-    // Validation en temps réel des champs obligatoires
+    // Validation en temps réel des champs
     const requiredFields = document.querySelectorAll('input[required], textarea[required], select[required]');
     requiredFields.forEach(field => {
         field.addEventListener('blur', function() {
@@ -616,14 +1254,74 @@
     const emailField = document.getElementById('email');
     emailField.addEventListener('blur', function() {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(this.value)) {
+        const formMessage = document.getElementById('formMessage');
+
+        if (this.value && !emailRegex.test(this.value)) {
             this.style.borderColor = '#dc3545';
-            showMessage('Veuillez entrer une adresse email valide.', 'error');
-        } else {
+            formMessage.className = 'form-message error';
+            formMessage.textContent = '⚠ Veuillez entrer une adresse email valide.';
+            formMessage.style.display = 'block';
+            setTimeout(() => {
+                formMessage.style.display = 'none';
+            }, 3000);
+        } else if (this.value) {
             this.style.borderColor = '#28a745';
         }
     });
+
+    // Fonction pour toggle les FAQ
+    function toggleFaq(element) {
+        const answer = element.nextElementSibling;
+        const allAnswers = document.querySelectorAll('.faq-answer');
+        const allQuestions = document.querySelectorAll('.faq-question');
+
+        // Vérifier si la FAQ cliquée est déjà active
+        const isActive = answer.classList.contains('active');
+
+        // Fermer toutes les FAQ
+        allAnswers.forEach(ans => {
+            ans.classList.remove('active');
+        });
+
+        allQuestions.forEach(q => {
+            q.classList.remove('active');
+        });
+
+        // Si la FAQ n'était pas active, l'ouvrir
+        if (!isActive) {
+            answer.classList.add('active');
+            element.classList.add('active');
+        }
+    }
+
+    // Animation au scroll pour les cartes restaurants
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll('.restaurant-card').forEach(card => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(30px)';
+        card.style.transition = 'all 0.6s ease';
+        observer.observe(card);
+    });
+
+    // Animation au scroll pour les éléments FAQ
+    document.querySelectorAll('.faq-item').forEach((item, index) => {
+        item.style.opacity = '0';
+        item.style.transform = 'translateY(20px)';
+        item.style.transition = `all 0.5s ease ${index * 0.1}s`;
+        observer.observe(item);
+    });
+
 </script>
-<script src="js/js.js"></script>
-</body>
-</html>
